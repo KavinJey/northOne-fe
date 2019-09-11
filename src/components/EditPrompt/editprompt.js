@@ -10,10 +10,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import Select from '@material-ui/core/Select';
 import 'date-fns';
 import axios from 'axios';
+import IconButton from '@material-ui/core/IconButton';
+
 
 import {
     MuiPickersUtilsProvider,
@@ -23,7 +25,7 @@ import {
 
 
 
-class Prompt extends React.Component {
+class EditPrompt extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,7 +56,7 @@ class Prompt extends React.Component {
         data.set('title', this.state.title);
         data.set('due_date', this.state.date);
         data.set('status_of_task', this.state.status);
-    
+
         axios.post('http://127.0.0.1:8000/api/v1/todoitems/', data)
             .then(res => {
                 console.log(res);
@@ -65,9 +67,6 @@ class Prompt extends React.Component {
         this.setState({
             open: false
         });
-
-        window.location.reload();
-
     }
 
     updateTitleValue = (event) => {
@@ -100,10 +99,9 @@ class Prompt extends React.Component {
         const values = ['Done', 'Pending', 'Not Started']
         return (
             <div>
-
-                <Fab color="primary" aria-label="add" className={classes.fab} onClick={this.handleClickOpen}>
-                    <AddIcon />
-                </Fab>
+                <IconButton onClick={this.handleClickOpen}>
+                    <EditIcon />
+                </IconButton>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Add Task</DialogTitle>
 
@@ -180,4 +178,4 @@ class Prompt extends React.Component {
     }
 }
 
-export default Prompt;
+export default EditPrompt;

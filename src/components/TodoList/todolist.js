@@ -33,7 +33,7 @@ class TodoList extends React.Component {
             <List>
                 {
                     this.state.tasks.map((item, key) => {
-                        return <TodoItem key={key} title={item.title} description={item.description} status={item.status_of_task} due_date={item.due_date} />
+                        return <TodoItem key={key} id={item.id} title={item.title} description={item.description} status={item.status_of_task} due_date={item.due_date} />
                 })
                 }
             </List>
