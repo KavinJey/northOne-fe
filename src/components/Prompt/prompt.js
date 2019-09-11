@@ -46,21 +46,25 @@ class Prompt extends React.Component {
 
 
     handleSubmit = () => {
-        const data = {
-            title: this.state.title,
-            description: this.state.description,
-            due_date: this.state.date,
-            status_of_task: this.state.status
-        }
+        const data = new FormData();
 
-        console.log(JSON.stringify(data))
-        axios.post('http://127.0.0.1:8000/api/v1/todoitems/', JSON.stringify(data))
+        // Setting up form data to be sent over
+        data.set('title', this.state.title);
+        data.set('description', this.state.description);
+        data.set('title', this.state.title);
+        data.set('due_date', this.state.date);
+        data.set('status_of_task', this.state.status);
+    
+        axios.post('http://127.0.0.1:8000/api/v1/todoitems/', data)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
             });
 
-
+        // Closing up dialog
+        this.setState({
+            open: false
+        });
     }
 
     updateTitleValue = (event) => {
