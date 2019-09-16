@@ -11,8 +11,11 @@ function App() {
      
     <div className="App">
       <header className="App-header">
+        <h1> Todo List</h1>
+        
         <TodoList />
         <Prompt /> 
+        <small class="instruction-text"> Use the buttton above to add tasks.</small>
       </header>
     </div>
   );
